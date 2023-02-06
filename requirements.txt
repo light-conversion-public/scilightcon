@@ -1,0 +1,8 @@
+pythonnet>=3.0.0
+pyserial
+numpy
+matplotlib
+requests
+pytest
+scipy
+pillow

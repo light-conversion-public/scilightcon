@@ -1,0 +1,1 @@
+coverage run -m pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=html
