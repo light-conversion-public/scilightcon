@@ -6,9 +6,6 @@
 variables:
   isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
-trigger:
-- master
-
 pool:
   vmImage: windows-latest
 strategy:
