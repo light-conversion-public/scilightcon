@@ -6,15 +6,17 @@
 variables:
   isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
-pool:
-  vmImage: windows-latest
 strategy:
   matrix:
-    Python37:
+    linuxPython37:
+      imageName: 'ubuntu-latest'
       python.version: '3.7'
-    Python311:
+    windowsPython311:
+      imageName: 'windows-latest'
       python.version: '3.11'
 
+pool:
+  vmImage: $(imageName)
 
 steps:
 - task: UsePythonVersion@0
