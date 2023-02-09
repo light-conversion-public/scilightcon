@@ -7,6 +7,7 @@ import gzip
 import os
 from ..utils.fixes import _open_text
 from typing import Tuple, List
+from typing_extensions import Literal
 
 import numpy as np
 
