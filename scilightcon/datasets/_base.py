@@ -6,7 +6,7 @@ import csv
 import gzip
 import os
 from ..utils.fixes import _open_text
-from typing import Tuple, Literal, List
+from typing import Tuple, List
 
 import numpy as np
 

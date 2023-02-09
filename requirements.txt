@@ -6,3 +6,4 @@ requests
 pytest
 scipy
 pillow
+typing_extensions
