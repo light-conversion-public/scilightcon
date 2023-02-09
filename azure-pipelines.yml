@@ -11,6 +11,9 @@ strategy:
     linuxPython37:
       imageName: 'ubuntu-latest'
       python.version: '3.7'
+    linuxPython311:
+      imageName: 'ubuntu-latest'
+      python.version: '3.11'
     windowsPython311:
       imageName: 'windows-latest'
       python.version: '3.11'
