@@ -1,9 +1,8 @@
 """
 This is an example module
 """
-from ._bar import add, substract
+from ._bar import add
 
 __all__ = [
-    "add",
-    "substract"
+    "add"
 ]
