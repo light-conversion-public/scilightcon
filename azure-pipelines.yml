@@ -39,6 +39,8 @@ steps:
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     pip install -r doc_requirements.txt
+    pip install wheel
+    pip install twine
   displayName: 'Install dependencies'
 
 - script: |
@@ -48,22 +50,13 @@ steps:
   displayName: 'Run tests'
 
 - script: |
-    pip install wheel
-    pip install twine
-  displayName: 'Install wheel and twine'
-
-- script: |
     python setup.py sdist bdist_wheel
-  displayName: 'Build source and wheel'
+  displayName: 'Build'
 
 - task: TwineAuthenticate@1
   inputs:
     artifactFeed: LCURS
-
-- script: |
-    python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
-  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
-  displayName: 'Publish wheel artifact'
+  displayName: 'Authenticate to Twine'
 
 - script: |
     mkdocs build
@@ -75,5 +68,11 @@ steps:
     azcopy sync "$(Build.SourcesDirectory)\doc\site" "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
   condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Upload documentation'
+
+- script: |
+    python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
+  condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  displayName: 'Publish wheel artifact'
+
 #- script : azcopy sync "$(System.DefaultWorkingDirectory)" "https://lightconupdater.blob.core.windows.net/firmware$(FirmwaresStorageSAS)" --recursive=true --delete-destination=true  --exclude-path=".git;deploy;azure-pipelines.yml"
   #displayName: Sync firmwares with Azure Storage Blob
