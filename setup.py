@@ -46,7 +46,7 @@ setuptools.setup(
         'Development Status :: 1 - Planning',
     ],
     project_urls = {
-            'Examples': 'https://bitbucket.org/harpiasoftware/light-conversion-apis/src/master/examples/'},
+            'Documentation': 'https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html'},
     python_requires='>=3.7',
 )
 
