@@ -9,15 +9,15 @@ variables:
 
 strategy:
   matrix:
-    linuxPython311:
-      imageName: 'ubuntu-latest'
-      python.version: '3.11'
-#    linuxPython37:
+#    linuxPython311:
 #      imageName: 'ubuntu-latest'
-#      python.version: '3.7'
-#    windowsPython311:
-#      imageName: 'windows-latest'
 #      python.version: '3.11'
+    linuxPython37:
+      imageName: 'ubuntu-latest'
+      python.version: '3.7'
+    windowsPython311:
+      imageName: 'windows-latest'
+      python.version: '3.11'
 
 pool:
   vmImage: $(imageName)
@@ -64,18 +64,18 @@ steps:
 
 - script: |
     mkdocs build
-  workingDirectory: doc
-  condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  workingDirectory: $(Build.SourcesDirectory)\doc
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Build documentation'
 
 - script: |
-    azcopy sync ./doc/site "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
-  condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+    azcopy sync "$(Build.SourcesDirectory)\doc\site" "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Upload documentation'
 
 - script: |
     python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
-  condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Publish wheel artifact'
 
 #- script : azcopy sync "$(System.DefaultWorkingDirectory)" "https://lightconupdater.blob.core.windows.net/firmware$(FirmwaresStorageSAS)" --recursive=true --delete-destination=true  --exclude-path=".git;deploy;azure-pipelines.yml"
