@@ -1,7 +1,9 @@
-# Include
+# Include at root folder
 include MANIFEST.in
-include scilightcon *.csv
-include scilightcon *.json
+
+# Include recursively
+recursive-include scilightcon *.csv
+recursive-include scilightcon *.json
 
 #Exclude
 prune */__pycache__
