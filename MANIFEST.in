@@ -1,0 +1,8 @@
+# Include
+include MANIFEST.in
+include scilightcon *.csv
+include scilightcon *.json
+
+#Exclude
+prune */__pycache__
+global-exclude *.pyc *~ *.bak *.swp *.pyo

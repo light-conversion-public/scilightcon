@@ -9,9 +9,9 @@ variables:
 
 strategy:
   matrix:
-#    linuxPython311:
-#      imageName: 'ubuntu-latest'
-#      python.version: '3.11'
+    linuxPython311:
+      imageName: 'ubuntu-latest'
+      python.version: '3.11'
     linuxPython37:
       imageName: 'ubuntu-latest'
       python.version: '3.7'

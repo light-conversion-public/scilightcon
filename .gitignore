@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# mkdocs documentation
+doc/site
+
 # Distribution / packaging
 .Python
 build/
