@@ -58,7 +58,7 @@ steps:
 - task: TwineAuthenticate@1
   inputs:
     artifactFeed: LCURS
-    pythonUploadServiceConnection: LCURSServiceConnection
+#    pythonUploadServiceConnection: LCURSServiceConnection
 
 - script: |
     python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
