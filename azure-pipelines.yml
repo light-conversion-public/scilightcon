@@ -62,8 +62,18 @@ steps:
 
 - script: |
     python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  displayName: 'Publish wheel artifact'
+
+- script: |
+    mkdocs build
+  workingDirectory: $(Build.SourcesDirectory)\doc
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  displayName: 'Build documentation'
+
+- script: |
     azcopy sync "$(Build.SourcesDirectory)\doc\site" "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
   condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
-
+  displayName: 'Upload documentation'
 #- script : azcopy sync "$(System.DefaultWorkingDirectory)" "https://lightconupdater.blob.core.windows.net/firmware$(FirmwaresStorageSAS)" --recursive=true --delete-destination=true  --exclude-path=".git;deploy;azure-pipelines.yml"
   #displayName: Sync firmwares with Azure Storage Blob
