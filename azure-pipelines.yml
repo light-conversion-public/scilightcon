@@ -59,6 +59,10 @@ steps:
   displayName: 'Authenticate to Twine'
 
 - script: |
+    pip install -e .
+  displayName: 'Install scilightcon'
+
+- script: |
     mkdocs build
   workingDirectory: doc
   condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
