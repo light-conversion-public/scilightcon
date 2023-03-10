@@ -22,6 +22,13 @@ pool:
   vmImage: $(imageName)
 
 steps:
+
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'LCURSServiceConnection'
+    KeyVaultName: 'devopsvault0'
+    SecretsFilter: '*'
+    RunAsPreJob: true
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
@@ -37,4 +44,24 @@ steps:
     pip install pytest pytest-azurepipelines
     pip install pytest-cov
     pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html:doc/docs/htmlcov --ignore=examples
-  displayName: 'pytest'
+  displayName: 'Run tests'
+
+- script: |
+    pip install wheel
+    pip install twine
+  displayName: 'Install wheel and twine'
+
+- script: |
+    python setup.py sdist bdist_wheel
+  displayName: 'Build source and wheel'
+
+- task: TwineAuthenticate@1
+  inputs:
+    artifactFeed: LCURS
+    pythonUploadServiceConnection: <NAME_OF_YOUR_SERVICE_CONNECTION>
+
+- script: |
+    python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
+
+#- script : azcopy sync "$(System.DefaultWorkingDirectory)" "https://lightconupdater.blob.core.windows.net/firmware$(FirmwaresStorageSAS)" --recursive=true --delete-destination=true  --exclude-path=".git;deploy;azure-pipelines.yml"
+  #displayName: Sync firmwares with Azure Storage Blob
