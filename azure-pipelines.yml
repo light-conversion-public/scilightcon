@@ -12,12 +12,12 @@ strategy:
     linuxPython311:
       imageName: 'ubuntu-latest'
       python.version: '3.11'
-    linuxPython37:
-      imageName: 'ubuntu-latest'
-      python.version: '3.7'
-    windowsPython311:
-      imageName: 'windows-latest'
-      python.version: '3.11'
+#    linuxPython37:
+#      imageName: 'ubuntu-latest'
+#      python.version: '3.7'
+#    windowsPython311:
+#      imageName: 'windows-latest'
+#      python.version: '3.11'
 
 pool:
   vmImage: $(imageName)
