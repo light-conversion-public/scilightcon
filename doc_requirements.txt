@@ -1,5 +1,6 @@
 mkdocs
-mkdocstrings
+mkdocstrings[python]
+mkdocstrings-python
 #materialx
 mkdocs-material
 #mkdocs-pdf-export
