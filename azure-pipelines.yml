@@ -69,7 +69,7 @@ steps:
   displayName: 'Build documentation'
 
 - script: |
-    azcopy sync "$(Build.SourcesDirectory)\doc\site" "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
+    azcopy sync ./doc/site "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
   condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Upload documentation'
 
