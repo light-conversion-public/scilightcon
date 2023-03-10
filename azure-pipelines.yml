@@ -60,7 +60,7 @@ steps:
 
 - script: |
     mkdocs build
-  workingDirectory: $(Build.SourcesDirectory)\doc
+  workingDirectory: $(Build.SourcesDirectory)\doc\
   condition: and(succeeded(), and(eq(variables['imageName'], 'ubuntu-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Build documentation'
 
