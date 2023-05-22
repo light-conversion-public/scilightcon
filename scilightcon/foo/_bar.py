@@ -36,3 +36,20 @@ def substract(a, b) -> float:
         A number representing the arithmetic sum of `a` and `b`.
     """
     return float(a - b)
+
+
+def multiply(a, b) -> float:
+    """Multiplies two numbers.
+
+    Examples:
+        >>> multiply(4.0, 2.0)
+        8.0
+
+    Args:
+        a (float): A number representing the first number.
+        b (float): A number representing the second number.
+
+    Returns:
+        A number representing the product of `a` and `b`.
+    """
+    return float(a * b)
