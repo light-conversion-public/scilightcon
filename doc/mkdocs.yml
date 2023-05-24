@@ -27,6 +27,7 @@ nav:
         - imaging: reference/imaging-reference.md
         - optics: reference/optics-reference.md
         - plot: reference/plot-reference.md
+        - utils: reference/utils-reference.md
         - signals: reference/signals-reference.md
       - Coverage report: htmlcov/coverage.html
 copyright: Light Conversion, UAB
