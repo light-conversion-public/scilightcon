@@ -5,16 +5,16 @@ from typing import Tuple, List
 def interpolate_and_multiply(
         D1: Tuple[List[float], List[float]], 
         D2: Tuple[List[float], List[float]]) -> Tuple[List[float], List[float]] :
-    """Takes D2 array and interpolates x an y in respect to array from D1. Then takes an array form D2 and adujst its range according to D1
-    and multiply two arrays.
+    """Takes D2 array and interpolates x an y with respect to array from D1. Then takes an array form D2 and adujsts its range according to D1
+    and multiplies two arrays.
 
 
     Args:
-        D1 (tuple): An array  to which respect we interpolate anoter array.
+        D1 (tuple): An array to which respect anoter array is interpolated .
         D2 (tuple): An array which x and y values are interpolated.
 
     Returns:
-        A matrix which is a product of `D1` and interpolated `D2`.
+        A tuple of two elements which is a product of `D1` and interpolated `D2`.
     """
 
     #interpolates D2 values according to D1 and selecting the range
