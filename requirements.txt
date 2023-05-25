@@ -3,3 +3,4 @@ matplotlib
 pytest
 typing_extensions
 scipy
+pickle
