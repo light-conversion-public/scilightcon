@@ -2,6 +2,12 @@
 import sys
 from importlib import resources
 
+def _open_binary(data_module, data_file_name):    
+    if sys.version_info >= (3, 9):
+        return resources.files(data_module).joinpath(data_file_name).open("rb")
+    else:
+        return resources.open_binary(data_module, data_file_name)
+
 def _open_text(data_module, data_file_name):    
     if sys.version_info >= (3, 9):
         return resources.files(data_module).joinpath(data_file_name).open("r")
