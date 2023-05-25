@@ -30,8 +30,6 @@ def interpolate_and_multiply(
 
     D4 = np.transpose([x1, y3])
 
-    #removing all rows with nan values
     D5 = (D4[~np.isnan(D4).any(axis=1)])
 
-    #Multiply D1 and D6
     return D5
