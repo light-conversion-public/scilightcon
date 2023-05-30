@@ -5,14 +5,15 @@ Base data loading code for all datasets
 import csv
 import gzip
 import os
-from ..utils.fixes import _open_text
+from ..utils._fixes import _open_text, _open_binary
 from typing import Tuple, List
 from typing_extensions import Literal
+import pickle
 
 import numpy as np
 
 DATA_MODULE = "scilightcon.datasets.data"
-
+MATERIALS_PICKLE_FILENAME = "toolbox_materials.pkl"
 
 def load_csv_data(
     data_file_name,
@@ -103,3 +104,10 @@ def load_EKSMA_OPTICS_mirror_reflections(
 
     return data, header
 
+def load_materials():
+    """
+    Loads material database as scilightcon.datasets.materials
+    """    
+    with _open_binary(DATA_MODULE, MATERIALS_PICKLE_FILENAME) as f:
+        materials = pickle.load(f)
+        return materials
