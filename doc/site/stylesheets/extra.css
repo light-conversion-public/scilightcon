@@ -1,9 +1,0 @@
-:root {
-    --md-primary-fg-color:        #000e44;
-    --md-primary-fg-color--light: #092365;
-    --md-primary-fg-color--dark:  #C8017D;
-  }
-
-  .md-footer {
-    background-color: var(--md-primary-fg-color);
-}

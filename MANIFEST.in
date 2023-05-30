@@ -5,6 +5,7 @@ include MANIFEST.in
 recursive-include scilightcon *.csv
 recursive-include scilightcon *.json
 recursive-include scilightcon *.pkl
+recursive-include scilightcon *.s2s
 
 #Exclude
 prune */__pycache__

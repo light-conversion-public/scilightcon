@@ -3,4 +3,5 @@ matplotlib
 pytest
 typing_extensions
 scipy
-pickle
+pickle-mixin
+msgpack
