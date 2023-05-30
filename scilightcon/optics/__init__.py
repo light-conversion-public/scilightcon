@@ -3,5 +3,5 @@
 from ._materials import load_material
 
 __all__ = [
-    "load_material"
+    "load_material",
 ]

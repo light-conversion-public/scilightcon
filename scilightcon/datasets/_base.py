@@ -5,7 +5,7 @@ Base data loading code for all datasets
 import csv
 import gzip
 import os
-from ..utils.fixes import _open_text, _open_binary
+from ..utils._fixes import _open_text, _open_binary
 from typing import Tuple, List
 from typing_extensions import Literal
 import pickle
