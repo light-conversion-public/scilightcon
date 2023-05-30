@@ -86,7 +86,7 @@ def load_s2s_data(filepath: str) -> ShotToShotData:
     Returns:
         ShotToShotData object
     """
-    s2s_data = ShotToShotData(filepath)
+    s2s_data = ShotToShotData()
     
     with gzip.open(filepath, 'rb') as f:
         b = f.read()

@@ -8,4 +8,4 @@ def test_utils_load_s2s_data():
 
     s2s_data = load_s2s_data(filepath)
 
-    assert(len(s2s_data).outliers == 4)
+    assert(len(s2s_data.outliers) == 5)
