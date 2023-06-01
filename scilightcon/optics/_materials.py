@@ -22,14 +22,19 @@ class Material:
        indices_dict = {'o': [0], 'e': [1], 'both': [0,1]}
        indices = indices_dict[ray]
        refractive_index_list = []
-    
        for parameter_index in indices:
+ 
+
+            if parameter_index >= len(self._info["Parameters"]):
+                 refractive_index_list.append(None)
+                 continue
+
             formula = self._info["Parameters"][parameter_index]["Formula"]
             wl_range = self._info["Parameters"][parameter_index]["WlNRange"]
             if wl<wl_range[0] or wl>wl_range[1]:
                 raise ValueError(f"For {'ordinary' if 0 == parameter_index else 'extraordinary'} type of ray " +
                                  f"the wavelenght should be in range between {wl_range[0]} and {wl_range[1]}")
-            
+                
             if formula == 0:
                 n = _get_refractive_index_from_raw_data(
                     wl,
@@ -46,7 +51,7 @@ class Material:
                         sellmeier_coeffs = self._info["Parameters"][parameter_index]["YC"]
 
                 refractive_index_list.append(_get_refractive_index_from_sellmeier_coeffs(wl, formula, sellmeier_coeffs))
-         
+            
        return refractive_index_list
 
 
@@ -85,7 +90,7 @@ def _get_refractive_index_from_sellmeier_coeffs(wl: float, formula_index: int, s
         return np.sqrt(C[0]+C[1]/((wl)**2-C[2])+C[3]*(wl-C[4])/((wl-C[4])**2+C[5]))
     # formula 10   
     if formula_index==10:
-        return np.sqrt( C[0] + C[1] / (wl ** 2) - C[2]) + (C[3] * (wl ** 2)) / ((wl ** 2) * C[4] - 1) + C[5] / ((wl ** 4) - C[6]) + (C[7] * (wl ** 2)) / (C[8] * (wl ** 4) - 1) + (C[9] * (wl ** 4)) / (C[10] * (wl ** 4) - 1); 
+        return np.sqrt( C[0] + C[1] / ((wl ** 2) - C[2]) + (C[3] * (wl ** 2)) / ((wl ** 2) * C[4] - 1) + C[5] / ((wl ** 4) - C[6]) + (C[7] * (wl ** 2)) / (C[8] * (wl ** 4) - 1) + (C[9] * (wl ** 4)) / (C[10] * (wl ** 4) - 1)); 
 
 def load_material(name: str) -> Material:
    from ..datasets import _materials
