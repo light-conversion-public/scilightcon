@@ -23,12 +23,14 @@ class Material:
        indices = indices_dict[ray]
        refractive_index_list = []
        for parameter_index in indices:
- 
 
+            if len(indices) == 1 and parameter_index >= len(self._info["Parameters"]):
+                raise ValueError(f"Refractive index can not be calculated for {'ordinary' if 0 == parameter_index else 'extraordinary'} type of ray ")
+                                   
             if parameter_index >= len(self._info["Parameters"]):
                  refractive_index_list.append(None)
                  continue
-
+            
             formula = self._info["Parameters"][parameter_index]["Formula"]
             wl_range = self._info["Parameters"][parameter_index]["WlNRange"]
             if wl<wl_range[0] or wl>wl_range[1]:
