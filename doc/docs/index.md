@@ -3,6 +3,7 @@
 ## Installation (until it is private)
 
 Prerequisites:
+
  - Download Python
  - Update pip `python -m pip install --upgrade pip`
  - Install the keyring `pip install keyring artifacts-keyring`

@@ -5,19 +5,24 @@ from scipy.interpolate import interp1d
 import math
 
 class Material:
+    """Stores all the information of the chosen material"""
+
     _info = {}
-    """
-       Stores all the info on the chosen material                
-    """
     def __init__ (self, info):
         self._info = info
 
     def get_refractive_index (self, wl: float, ray = 'both') -> List[float]:
        """  
-        Returns array of calculated refractive index for a givern wavelength and target ray.
-        First, the program takes the formula number and checks if the given wavelength is within the valid range.
-        If the formula number is 0, it interpolates the datasets DataNWl and DataN to calculate the refractive index.
-        If the formula number is in the range of 1-10, it calculates the refractive index using Sellmeier coefficients and corresponding equations.            
+        The function omputes and returns the refractive index for a spesific material, considering the chosen and a type of ray.
+
+        Args:
+            wl (float): Wavelength in micrometers   
+            ray (str): 'o' for ordinary, 
+                'e' for extraordinary, 
+                'both' for boths ordinary and extraordinary rays  
+
+        Returns:
+            An array of material's refractive index or indexes if calculated for both types of rays.       
        """
        indices_dict = {'o': [0], 'e': [1], 'both': [0,1]}
        indices = indices_dict[ray]
@@ -95,6 +100,10 @@ def _get_refractive_index_from_sellmeier_coeffs(wl: float, formula_index: int, s
         return np.sqrt( C[0] + C[1] / ((wl ** 2) - C[2]) + (C[3] * (wl ** 2)) / ((wl ** 2) * C[4] - 1) + C[5] / ((wl ** 4) - C[6]) + (C[7] * (wl ** 2)) / (C[8] * (wl ** 4) - 1) + (C[9] * (wl ** 4)) / (C[10] * (wl ** 4) - 1)); 
 
 def load_material(name: str) -> Material:
+   """Loads material's data.
+    Args:
+        name (str): material's name, chemformula or alias  
+   """
    from ..datasets import _materials
    
    name = name.lower()
@@ -108,4 +117,3 @@ def _get_refractive_index_from_raw_data(x0: float, x: List[float], y: List[float
     '''This function interpolates x,y data and returns function's value at x0'''
     f2 = interp1d(x, y, kind = "linear") 
     return f2(x0)
-
