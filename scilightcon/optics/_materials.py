@@ -109,7 +109,7 @@ def load_material(name: str) -> Material:
         >>> zinc_oxide = load_material('Zinc oxide')
         >>> n_o, n_e = zinc_oxide.get_refractive_index(1.03, ray = 'both')
         >>> n_o
-        1.9417466542383048        
+        1.9417466542383048
         >>> n_e
         1.9565995766753679
 
