@@ -1,11 +1,10 @@
 import pytest
-
-@pytest.skip("Required for syncing before production")
-def update_materials_db():
+# set $env:CONN_STR to read-only connection string to toolbox-mongo.db
+@pytest.skip("Should be manually invoked and pymongo package is not required for the scilightcon package")
+def load_materials_database():
     import pymongo
     import pickle
     import os
-    # set $env:CONN_STR to read-only connection string to toolbox-mongo.db
 
     CONN_STR = os.environ['CONN_STR']
 
