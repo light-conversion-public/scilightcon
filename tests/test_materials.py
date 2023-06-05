@@ -9,7 +9,7 @@ def test_refractive_index():
 
     # 1 - loads material
     zinc = load_material('Zinc oxide')
-    assert (len(zinc) == 1)
+    assert (zinc is not None)
 
     # 2 - raises ValueError when material not found
     with pytest.raises(ValueError):
@@ -39,9 +39,11 @@ def test_refractive_index():
         zinc.get_refractive_index(4.1)
 
     # 6 - anisotropic medium by alias
-    fs = load_material('Fused silica')
-    assert (len(ri = fs.get_refractive_index(1.03)) == 1)
-    assert (len(ri = fs.get_refractive_index(1.03, ray='o')) == 1)
-    assert (len(ri = fs.get_refractive_index(1.03, ray='e')) == 1)
+    fs = load_material('Pb')
+    assert (len(fs.get_refractive_index(1.03)) == 2)
+    assert (fs.get_refractive_index(1.03)[1] == None)
+    assert (len(fs.get_refractive_index(1.03, ray='o')) == 1)
+    with pytest.raises(ValueError):
+        fs.get_refractive_index(1.03, ray='e')
 
 

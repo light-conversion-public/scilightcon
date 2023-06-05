@@ -104,6 +104,8 @@ def load_EKSMA_OPTICS_mirror_reflections(
 
     return data, header
 
+
+
 def load_materials():
     """
     Loads material database as scilightcon.datasets.materials

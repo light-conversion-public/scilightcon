@@ -13,3 +13,9 @@ def _open_text(data_module, data_file_name):
         return resources.files(data_module).joinpath(data_file_name).open("r")
     else:
         return resources.open_text(data_module, data_file_name)
+    
+def _get_path(data_module, data_file_name):
+    if sys.version_info >= (3, 9):
+        return resources.files(data_module).joinpath(data_file_name)
+    else:
+        return resources.path(data_module, data_file_name)
