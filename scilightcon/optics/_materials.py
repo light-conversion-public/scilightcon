@@ -103,6 +103,17 @@ def load_material(name: str) -> Material:
    """Loads material's data.
     Args:
         name (str): material's name, chemformula or alias  
+        
+    Examples:
+        >>> from scilightcon.optics import load_material
+        >>> zinc_oxide = load_material('Zinc oxide')
+        >>> n_o, n_e = zinc_oxide.get_refractive_index(1.03, ray = 'both')
+        >>> n_o
+        1.9417466542383048        
+        >>> n_e
+        1.9565995766753679
+
+
    """
    from ..datasets import _materials
    
