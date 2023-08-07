@@ -5,23 +5,12 @@
 [![PyPi license](https://badgen.net/pypi/license/pip/)](https://pypi.org/project/pip/)
 [![Website up](https://img.shields.io/website-up-down-green-red/https/lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html.svg)](https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html)
 
-<script type="text/javascript" src="https://lightcon.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/-ia3qmx/b/4/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c534c7de"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-
-<script type="text/javascript">window.ATL_JQ_PAGE_PROPS = $.extend(window.ATL_JQ_PAGE_PROPS, {
-        "triggerFunction": function(showCollectorDialog) {
-            jQuery("#feedback").click(function() {
-                showCollectorDialog();
-            });
-        }});</script>
-
 ![scilightcon logo](doc/docs/img/app_logo_128px.png)
 
 scilightcon is an open-source library, developed by [LIGHT CONVERSION](https://lightcon.com), one of the world’s leading manufacturers of femtosecond laser systems for industrial, scientific and medical purposes. The library includes modules and examples for optics, signal analysis, fitting, imaging, and more.
 
 - **Documentation**: [https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html](https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html) 
-- **Feedback**: <a href="#" id="feedback">Report issue</a>
+- **Feedback**: <a href="mailto:mls.software@lightcon.com" id="feedback">Report issue</a>
 
 ## Install
 scilightcon library is available as wheel packages for Windows, Linux and macOS on [PyPI](https://pypi.python.org/pypi/scilightcon/). Install using `pip`:
