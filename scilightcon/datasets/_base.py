@@ -78,9 +78,9 @@ def load_zipped_csv_data(data_file_name, *, data_module=DATA_MODULE):
     """Extracts gzip file to csv.
     
     Examples:
-        >>> from scilightcon.datasets import _load_zipped_csv_data
-        >>> data_file_name = r'C:\Code\lightcon-scipack\scilightcon\datasets\data\data_test_detect_peaks.csv.gz'
-        >>> data, header = _load_zipped_csv_data(data_file_name)
+        >>> from scilightcon.datasets import load_zipped_csv_data # doctest: +SKIP
+        >>> data_file_name = r'C:\Code\lightcon-scipack\scilightcon\datasets\data\data_test_detect_peaks.csv.gz' # doctest: +SKIP
+        >>> data, header = _load_zipped_csv_data(data_file_name) # doctest: +SKIP
         
     Args:
         data_file_name (str): Path of the file that needs to be extracted
