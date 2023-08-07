@@ -1,4 +1,7 @@
 ﻿site_name: scilightcon
+repo_url: https://github.com/light-conversion-public/scilightcon
+repo_name: scilightcon
+site_author: Light Conversion, UAB
 theme:
     name: material
     collapse_navigation: false
