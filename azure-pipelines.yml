@@ -58,6 +58,12 @@ steps:
     artifactFeed: LCURS
   displayName: 'Authenticate to Twine'
 
+- task: TwineAuthenticate@1
+  condition: and(succeeded(), eq(variables.isMaster, 'false'))
+  inputs:
+    pythonUploadServiceConnection: 'scilightcon test PyPi'
+  displayName: 'Authenticate to test service connection'
+
 - script: |
     pip install -e .
   displayName: 'Install scilightcon'
@@ -77,3 +83,9 @@ steps:
     python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
   condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Publish wheel artifact'
+
+- script: |
+    type $(PYPIRC_PATH)
+    python -m twine upload -r "scilightcon" --config-file $(PYPIRC_PATH) dist/* --verbose
+  condition: and(succeeded(), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'true')))
+  displayName: 'Upload to test PyPI'
