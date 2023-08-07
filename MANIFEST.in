@@ -1,0 +1,14 @@
+# Include at root folder
+include MANIFEST.in
+
+# Include recursively
+recursive-include scilightcon *.csv
+recursive-include scilightcon *.json
+recursive-include scilightcon *.pkl
+recursive-include scilightcon *.s2s
+recursive-include scilightcon *.zip
+recursive-include scilightcon *.gz
+
+#Exclude
+prune */__pycache__
+global-exclude *.pyc *~ *.bak *.swp *.pyo

@@ -1,0 +1,85 @@
+﻿site_name: scilightcon
+theme:
+    name: material
+    collapse_navigation: false
+    font:
+      text: source sans pro
+    logo: assets/logo.svg
+    features:
+      - navigation.instant
+      - navigation.tabs
+      - navigation.tracking
+      - navigation.expand
+      - navigation.indexes
+      - toc.integrate
+
+nav:
+    - Introduction: 'index.md'
+    - Development: 'development.md'
+    - User manual: 'user_manual.md'
+    - Code Reference: 
+      #- control: reference/control-reference.md
+      - datasets: reference/datasets-reference.md
+      - fitting: reference/fitting-reference.md
+      #- imaging: reference/imaging-reference.md
+      - optics: reference/optics-reference.md
+      #- plot: reference/plot-reference.md
+      - utils: reference/utils-reference.md
+      #- signals: reference/signals-reference.md
+    #- Coverage report: htmlcov/coverage.html
+copyright: Light Conversion, UAB
+use_directory_urls: false
+
+watch:
+  - ../scilightcon
+
+plugins:
+  - search
+  - offline
+  - render_swagger
+  - section-index
+  # - coverage:
+  #     page_name: coverage
+  #     html_report_dir: ../htmlcov
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [../scilightcon]
+          options:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: yes
+            merge_init_into_class: false
+            separate_signature: false
+            show_source: no
+            show_bases: true
+            show_root_full_path: true
+            show_submodules: true
+            show_object_full_path: true
+            show_category_heading: true
+
+  - neoteroi.mkdocsoad:
+      use_pymdownx: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra:
+  generator: false
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/mkdocsoad.css
+
