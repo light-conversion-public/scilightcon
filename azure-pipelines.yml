@@ -1,0 +1,79 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+variables:
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  targetName: 'scilightcon'
+
+strategy:
+  matrix:
+    linuxPython311:
+      imageName: 'ubuntu-latest'
+      python.version: '3.11'
+    linuxPython37:
+      imageName: 'ubuntu-latest'
+      python.version: '3.7'
+    windowsPython311:
+      imageName: 'windows-latest'
+      python.version: '3.11'
+
+pool:
+  vmImage: $(imageName)
+
+steps:
+
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'LCURSServiceConnection'
+    KeyVaultName: 'devopsvault0'
+    SecretsFilter: '*'
+    RunAsPreJob: true
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    pip install -r doc_requirements.txt
+    pip install wheel
+    pip install twine
+  displayName: 'Install dependencies'
+
+- script: |
+    pip install pytest pytest-azurepipelines
+    pip install pytest-cov
+    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html:doc/docs/htmlcov --ignore=examples
+  displayName: 'Run tests'
+
+- script: |
+    python setup.py sdist bdist_wheel
+  displayName: 'Build'
+
+- task: TwineAuthenticate@1
+  inputs:
+    artifactFeed: LCURS
+  displayName: 'Authenticate to Twine'
+
+- script: |
+    pip install -e .
+  displayName: 'Install scilightcon'
+
+- script: |
+    mkdocs build
+  workingDirectory: $(Build.SourcesDirectory)\doc
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  displayName: 'Build documentation'
+
+- script: |
+    azcopy sync "$(Build.SourcesDirectory)\doc\site" "https://lightconupdater.blob.core.windows.net/documentation/$(targetName)/$(DocumentationStorageSAS)" --recursive=true
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  displayName: 'Upload documentation'
+
+- script: |
+    python -m twine upload -r LCURS --config-file $(PYPIRC_PATH) dist/*.whl
+  condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
+  displayName: 'Publish wheel artifact'
