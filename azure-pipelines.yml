@@ -90,9 +90,11 @@ steps:
     python -m twine upload -r "scilightcon" --config-file $(PYPIRC_PATH) dist/* --verbose
   condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'False'))))
   displayName: 'Upload to test PyPI'
+  continueOnError: True
 
 - script: |
     type $(PYPIRC_PATH)
     python -m twine upload -r "scilightcon" --config-file $(PYPIRC_PATH) dist/* --verbose
   condition: and(succeeded(), and(eq(variables['imageName'], 'windows-latest'), and(eq(variables['python.version'], '3.11'), eq(variables.isMaster, 'True'))))
   displayName: 'Upload to PyPI'
+  continueOnError: True
