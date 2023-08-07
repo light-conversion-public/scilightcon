@@ -59,7 +59,7 @@ steps:
   displayName: 'Authenticate to Twine'
 
 - task: TwineAuthenticate@1
-  condition: and(succeeded(), eq(variables.isMaster, 'false'))
+  condition: and(succeeded(), eq(variables.isMaster, 'true'))
   inputs:
     pythonUploadServiceConnection: 'scilightcon test PyPi'
   displayName: 'Authenticate to test service connection'
