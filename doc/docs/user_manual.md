@@ -1,7 +1,7 @@
 ## Datasets
 
 ### Mirror reflections data
-The following code loads wavelength-dependent reflection dataset of metal coated mirrors and plots a wavelength vs. reflection graph.
+The following code loads a wavelength-dependent reflection dataset of metal coated mirrors and plots a wavelength vs. reflection graph.
 
 ``` py title="examples\example_EKSMA_OPTICS_mirrors.py"
 from scilightcon.datasets import load_EKSMA_OPTICS_mirror_reflections
@@ -21,17 +21,36 @@ plt.grid()
 ![Image title](.\img\load_EKSMA_OPTICS_mirror_reflections.png)
 
 ### Transmission functions for Thorlabs filters
-The following code loads wavelength-dependent transmission dataset of Thorlabs filters and plots a wavelength vs. transmission graph. In this example only five filters are used.
+The following code loads a wavelength-dependent transmission dataset of Thorlabs filters and plots a wavelength vs. transmission graph. In this example only five filters are used.
 ``` py title="load_THORLABS_filter_transmissions.py"
 from scilightcon.datasets import load_THORLABS_filter_transmissions
 import matplotlib.pyplot as plt
+import numpy as np
 
-plt.figure('reflectance')
+plt.figure()
 plt.clf()
 
 for material in ["DMLP425", "DMLP550", "FES0500", 'FES0800', "FGUV11"]:
     data, headers = load_THORLABS_filter_transmissions(material)
-    plt.plot(data[:,0], data[:,1], label = material)
+
+    x_values = data[:,0]
+    y_values = data[:,1]
+    filtered_x = [x_values[0]]
+    filtered_y = [y_values[0]]
+    h = [1/3, 1/3, 1/3]
+    for x, y in zip(x_values, y_values):
+        if not filtered_x or x>= filtered_x[-1]:
+            filtered_x.append(x)
+            filtered_y.append(y)
+        else:
+            pass
+
+    y_values_smooth = np.convolve(filtered_y, h, 'same')
+    y_values_smooth[-1] = (filtered_y[-1] + filtered_y[-2])/2
+    y_values_smooth[-2] = (filtered_y[-1] + filtered_y[-2])/2
+    y_values_smooth[0] = (y_values[0] + y_values[1])/2  
+    y_values_smooth[1] = (y_values[0] + y_values[1])/2
+    plt.plot(filtered_x, y_values_smooth, label = material)
 
 plt.xlabel(headers[0])
 plt.ylabel(headers[1])
@@ -43,18 +62,37 @@ plt.show()
 
 
 
-### Transmission functions for EO filters
-The following code loads wavelength-dependent transmission dataset for EO filters and plots a wavelength vs. transmission graph. In this example only four filters are used.
+### Transmission functions for Edmund Optics filters
+The following code loads a wavelength-dependent transmission dataset for Edmund Optics filters and plots a wavelength vs. transmission graph. In this example only four filters are used.
 ``` py title="load_EO_filter_transmissions.py"
 from scilightcon.datasets import load_EO_filter_transmissions
 import matplotlib.pyplot as plt
+import numpy as np
 
-plt.figure('reflectance')
+plt.figure()
 plt.clf()
 
 for material in ["lp_400nm", "lp_600nm", "sp_400nm", 'sp_600nm']:
     data, headers = load_EO_filter_transmissions(material)
-    plt.plot(data[:,0], data[:,1], label = material)
+
+    x_values = data[:,0]
+    y_values = data[:,1]
+    filtered_x = [x_values[0]]
+    filtered_y = [y_values[0]]
+    h = [1/3, 1/3, 1/3]
+    for x, y in zip(x_values, y_values):
+        if not filtered_x or x>= filtered_x[-1]:
+            filtered_x.append(x)
+            filtered_y.append(y)
+        else:
+            pass
+
+    y_values_smooth = np.convolve(filtered_y, h, 'same')
+    y_values_smooth[-1] = (filtered_y[-1] + filtered_y[-2])/2
+    y_values_smooth[-2] = (filtered_y[-1] + filtered_y[-2])/2
+    y_values_smooth[0] = (y_values[0] + y_values[1])/2  
+    y_values_smooth[1] = (y_values[0] + y_values[1])/2
+    plt.plot(filtered_x, y_values_smooth, label = material)
 
 plt.xlabel(headers[0])
 plt.ylabel(headers[1])
@@ -66,12 +104,12 @@ plt.show()
 </figure>
 
 ### Atmospheric data
-The following code loads wavelength-dependent conductivity dataset and plots a wavelength vs. conductivity graph. 
+The following code loads an atmospheric dataset and plots a wavelength vs. conductivity graph. 
 ``` py title="load_atmospheric_data.py"
 from scilightcon.datasets import load_atmospheric_data
 import matplotlib.pyplot as plt
 
-plt.figure('reflectance')
+plt.figure()
 plt.clf()
 
 data, headers = load_atmospheric_data()
@@ -216,7 +254,7 @@ print(loggers_names_list)
 ```
 
 #### Collecting names of measurables
-The following code collects and prints out a list of measurables names for a given logger.
+The following code collects and prints out a list of measurables names for a given logger name.
 ``` py
 import datetime
 from scilightcon.datasets import LogsReader
@@ -234,7 +272,7 @@ print(measurables)
 ```
 
 #### Retrieving data from the measurable
-The following code checks if given `logger_name` and `measurable` are valid then collects and timestamps and values for a given time period and displays them in a graph.
+The following code checks if given `logger_name` and `measurable` are valid then collects timestamps and values for a given time period and displays them in a graph.
 ``` py title="examples\example_logs_reader.py"
 import datetime
 from scilightcon.datasets import LogsReader
