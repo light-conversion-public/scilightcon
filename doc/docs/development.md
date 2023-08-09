@@ -54,3 +54,16 @@ This will create a new directory, named `site`. Open `index.html` from there.
 ### Unit tests
 
 Unit tests are prepared with `pytest`
+
+## Roadmap
+
+- [datasets] Add spectra of Light Conversion devices to scilightcon
+- [plot] fancy hist() – granularity detection, autoranging, lin/log, vertical/horizontal
+- [signals] fancy fft() – calculate FFT with absolute X and Y axis values dBm, dBc/Hz,etc.
+- [datasets] Reflection coefficient dependence on wavelength for different popular mirror types at 45deg
+- [datasets] Big file reader (chunk-based BIN/CSV file reader that can work inside ZIP files)
+- [plot] export_figure – generate PNG and PDF at consistent and correct DPI
+- [plot] imshow_ex – image panel with adjacent profile and/or histogram panels
+- [signals] Single-call curve smoothing, data reduction tool (SG, FFT, occurrence plot)
+- [optics] Time-bandwidth calculator
+
