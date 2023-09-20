@@ -109,7 +109,7 @@ def load_EO_filter_transmissions(
         >>> from scilightcon.datasets import load_EO_filter_transmissions
         >>> data, header = load_EO_filter_transmissions('lp_450nm')
         >>> np.shape(data)
-        (1297, 2)
+        (293, 2)
         >>> header
         ['Wavelength (nm)', 'Transmission (%)']
 

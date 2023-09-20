@@ -55,13 +55,13 @@ def load_EO_filter_transmissions():
     from scilightcon.datasets import load_EO_filter_transmissions
 
     data, headers = load_EO_filter_transmissions('lp_400nm')
-    assert (np.shape(data) == (1209,2))
+    assert (np.shape(data) == (412,2))
 
     data, headers = load_EO_filter_transmissions('lp_450nm')
-    assert (np.shape(data) == (1297,2))
+    assert (np.shape(data) == (293,2))
 
     data, headers = load_EO_filter_transmissions('lp_500nm')
-    assert (np.shape(data) == (1315,2))
+    assert (np.shape(data) == (410,2))
 
     with pytest.raises(ValueError):
         _,_ = load_EO_filter_transmissions('Other')
