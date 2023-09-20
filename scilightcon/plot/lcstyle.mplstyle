@@ -1,0 +1,96 @@
+### FONT
+
+font.family         : sans-serif
+font.style          : normal
+font.variant        : normal
+font.weight         : normal
+font.stretch        : normal
+
+
+font.size           : 12.0
+font.serif     : DejaVu Serif, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif
+font.sans-serif: Source Sans Pro
+font.cursive   : Apple Chancery, Textile, Zapf Chancery, Sand, Script MT, Felipa, cursive
+font.fantasy   : Comic Sans MS, Chicago, Charcoal, ImpactWestern, Humor Sans, fantasy
+font.monospace : DejaVu Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
+
+### TICKS
+# see http://matplotlib.org/api/axis_api.html#matplotlib.axis.Tick
+
+xtick.top            : True   # draw ticks on the top side
+xtick.bottom         : True   # draw ticks on the bottom side
+xtick.major.size     : 4      # major tick size in points
+xtick.minor.size     : 2      # minor tick size in points
+xtick.minor.visible  : False
+xtick.major.width    : 1    # major tick width in points
+xtick.minor.width    : 1    # minor tick width in points
+xtick.major.pad      : 4      # distance to major tick label in points
+xtick.minor.pad      : 4      # distance to the minor tick label in points
+xtick.color          : k      # color of the tick labels
+xtick.labelsize      : medium # fontsize of the tick labels
+xtick.direction      : in     # direction: in, out, or inout
+xtick.major.top      : True   # draw x axis top major ticks
+xtick.major.bottom   : True   # draw x axis bottom major ticks
+xtick.minor.top      : True   # draw x axis top minor ticks
+xtick.minor.bottom   : True   # draw x axis bottom minor ticks
+xtick.alignment : center
+
+ytick.left           : True   # draw ticks on the left side
+ytick.right          : True   # draw ticks on the right side
+ytick.major.size     : 4      # major tick size in points
+ytick.minor.size     : 2      # minor tick size in points
+ytick.minor.visible  : False
+ytick.major.width    : 1    # major tick width in points
+ytick.minor.width    : 1    # minor tick width in points
+ytick.major.pad      : 4      # distance to major tick label in points
+ytick.minor.pad      : 4      # distance to the minor tick label in points
+ytick.color          : k      # color of the tick labels
+ytick.labelsize      : medium # fontsize of the tick labels
+ytick.direction      : in     # direction: in, out, or inout
+ytick.major.left     : True   # draw y axis left major ticks
+ytick.major.right    : True   # draw y axis right major ticks
+ytick.minor.left     : True   # draw y axis left minor ticks
+ytick.minor.right    : True   # draw y axis right minor ticks
+ytick.alignment      : center
+
+### FIGURE
+figure.figsize   : 8, 8    # figure size in inches
+figure.autolayout : True # When True, automatically adjust subplot
+                           # parameters to make the plot fit the figure
+
+# The figure subplot parameters.  All dimensions are a fraction of the
+# figure width or height
+figure.subplot.left    : 0.125  # the left side of the subplots of the figure
+figure.subplot.right   : 0.9    # the right side of the subplots of the figure
+figure.subplot.bottom  : 0.1    # the bottom of the subplots of the figure
+figure.subplot.top     : 0.9    # the top of the subplots of the figure
+figure.subplot.wspace  : 0.2    # the amount of width reserved for space between subplots,
+                                # expressed as a fraction of the average axis width
+figure.subplot.hspace  : 0.2    # the amount of height reserved for space between subplots,
+                                # expressed as a fraction of the average axis height
+
+
+### IMAGES
+image.cmap          : RdYlGnBu # A colormap name, gray etc...                                
+
+### Legend
+legend.loc           : upper right
+legend.numpoints     : 1      # the number of points in the legend line
+legend.fontsize      : medium
+
+
+### AXES
+axes.linewidth      : 1     # edge linewidth
+axes.grid           : True   # display grid or not
+axes.grid.which     : major
+axes.grid.axis      : both
+
+axes.autolimit_mode : data
+axes.xmargin        : 0  # x margin.  See `axes.Axes.margins`
+axes.ymargin        : 0  # y margin See `axes.Axes.margins`
+axes.spines.bottom  : True
+axes.spines.left    : True
+axes.spines.right   : True
+axes.spines.top     : True
+
+axes.prop_cycle    : cycler('color', ['003A7E', 'EA8C00', '46A455', 'CC2F1D', '5B2283', '0093CD', 'C7007F', '797E83', 'EABF3F', '00A49D'])

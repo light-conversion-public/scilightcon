@@ -8,6 +8,8 @@ recursive-include scilightcon *.pkl
 recursive-include scilightcon *.s2s
 recursive-include scilightcon *.zip
 recursive-include scilightcon *.gz
+recursive-include scilightcon *.png
+recursive-include scilightcon *.mplstyle
 
 #Exclude
 prune */__pycache__

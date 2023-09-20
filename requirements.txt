@@ -6,3 +6,5 @@ scipy
 pickle-mixin
 msgpack
 pandas
+os
+Pillow

@@ -314,4 +314,39 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 ```
 ![Image title](.\img\example_logs_reader.png)
-</figure>
+
+## Plotting
+
+### Default style
+
+Light Conversion default style is loaded as `matplotlib` stylesheet with additional colormaps for drawing beam profiles (`beam_profile`), data (`RdYlGnBu`) or camera images (`morgenstemning`).
+
+=== "scilightcon style"
+    To enable the style, insert the following lines at the beginning of your script
+    ``` py
+    from scilightcon.plot import apply_style
+
+    apply_style()
+    ```
+    ![Image title](.\img\example_plot_style_scilightcon.png)
+
+
+=== "Default style"
+    To reset the style to default:
+    ``` py
+    from scilightcon.plot import reset_style()
+    
+    reset_style()
+    ```
+    ![Image title](.\img\example_plot_style_default.png)
+
+### Watermarks
+To add one or multiple Light Conversion watermark(s), use `scilightcon.plot.add_watermark()` or `scilightcon.plot.add_watermarks()`
+
+=== "One watermark"
+    Call `scilightcon.plot.add_watermark(plt.gcf())` at the end of the script.
+    ![Image title](.\img\example_plot_style_scilightcon_one_watermark.png)
+
+=== "Multiple watermarks"
+    Call `scilightcon.plot.add_watermarks(plt.gcf())` at the end of the script.
+    ![Image title](.\img\example_plot_style_scilightcon_watermarks.png)
