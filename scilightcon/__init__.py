@@ -1,4 +1,4 @@
-__version__ = "0.2.0-7"
+__version__ = "0.2.0-8"
 
 from . import plot
 from . import utils
