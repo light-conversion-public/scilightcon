@@ -188,6 +188,8 @@ class LogsReader:
 
                 file_path = os.path.join(day_path, measurable + ".txt")
                 if not os.path.isfile(file_path):
+                    print("Invalid measurable '{:}'".format(measurable))
+                    print("Valid measurable names are: ", self.list_measurables(logger_name))
                     raise ValueError('Measurable name is not valid')
                 with open(file_path, "r") as f:
                     for line in f:
