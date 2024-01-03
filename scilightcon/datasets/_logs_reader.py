@@ -10,7 +10,7 @@ from typing import List
 __doctest_skip__ = ['*']
 class LogsReader:
     """
-    Reader object for getting time-dependent data from logs folders, created by different software (Argos, CEP, ThermoLoggers, etc.) 
+    Reader object for getting time-dependent data from logs folders, created by different software (Argos, CEP, ThermoLoggers, etc.)
 
     Examples:
 
@@ -28,18 +28,18 @@ class LogsReader:
         >>> measurable = 'A1-H Stalas 1' # doctest: +SKIP
         >>> from_date = datetime.datetime(2023,7,20) # doctest: +SKIP
         >>> to_date = datetime.datetime(2023,7,21) # doctest: +SKIP
-        >>> times, values = reader.get_data(logger_name=logger_name, measurable=measurable, from_date=from_date, to_date=to_date) # doctest: +SKIP    
+        >>> times, values = reader.get_data(logger_name=logger_name, measurable=measurable, from_date=from_date, to_date=to_date) # doctest: +SKIP
     """
 
     def __init__(self, loggs_dir: str):
         self.loggs_dir = loggs_dir
-    
+
     def list_loggers(self) -> List[str]:
-        """  
+        """
         Collects names of available loggers
 
         Returns:
-            A list of Logger names       
+            A list of Logger names
         """
         loggers_names_list = []
         for logger_name in os.listdir(self.loggs_dir):
@@ -72,30 +72,30 @@ class LogsReader:
                             first_line = lines[0]
                             columns = first_line.split(",")
                             if len(columns) == 3:
-                                valid_file_found = True  
+                                valid_file_found = True
                             if logger_name_path not in loggers_names_list:
                                 loggers_names_list.append(os.path.basename(logger_name_path))
-                                break  
-                    break   
-                break    
-            
-        return loggers_names_list                                       
-    
+                                break
+                    break
+                break
+
+        return loggers_names_list
+
     def list_measurables(self, logger_name: str) -> List[str]:
-        """  
+        """
         Collects names of measurables of a given logger
-        
+
         Args:
-            logger_name (str): Logger name  
+            logger_name (str): Logger name
 
         Returns:
-            A list of measurables that can be found for the specific logger 
+            A list of measurables that can be found for the specific logger
         """
         measurables = []
         logger_name_path = os.path.join(self.loggs_dir, logger_name)
         if not os.path.isdir(logger_name_path):
             raise ValueError('Folder name is not valid')
-        
+
         f = glob.glob(f'{self.loggs_dir}/{logger_name}/**/*.txt', recursive = True)
         for measurable_path in f:
             measurable = os.path.splitext(os.path.basename(measurable_path))[0]
@@ -117,7 +117,7 @@ class LogsReader:
             times (List (datetime.datetime)): A list with timestamps
             values (List (float)): A list with the values
         """
-        
+
         output_list = []
 
         logger_name_path = os.path.join(self.loggs_dir, logger_name)
@@ -164,11 +164,11 @@ class LogsReader:
                 continue
 
             year_month_date = datetime.datetime.strptime(f'{year_month}', '%Y-%m')
-            
+
             from_month_number = from_date.month
-            from_year_number = to_date.year
+            from_year_number = from_date.year
             from_year_month_date = datetime.datetime.strptime(f'{from_year_number}-{from_month_number}', '%Y-%m')
-            
+
             to_month_number = to_date.month
             to_year_number = to_date.year
             to_year_month_date = datetime.datetime.strptime(f'{to_year_number}-{to_month_number}', '%Y-%m')
@@ -181,7 +181,7 @@ class LogsReader:
                 day_path = os.path.join(year_month_path, day)
                 if not os.path.isdir(day_path):
                     continue
-                
+
                 folder_date = datetime.datetime.strptime(f'{year_month}-{day}', '%Y-%m-%d')
                 if not (folder_date >= from_date and folder_date <= to_date):
                     continue
@@ -198,7 +198,7 @@ class LogsReader:
                             date_coloumn = datetime.datetime.strptime(columns[0], '%Y-%m-%d %H:%M:%S.%f')
                             value_coloumn = float(columns[2])
                             output_list.append((date_coloumn, value_coloumn))
-        
+
         sorted_output = sorted(output_list, key=lambda x: x[0])
         sorted_output_times = [column[0] for column in sorted_output]
         sorted_output_values = [column[1] for column in sorted_output]
