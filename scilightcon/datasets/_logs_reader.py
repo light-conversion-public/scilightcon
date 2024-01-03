@@ -154,6 +154,10 @@ class LogsReader:
 
         if from_date is None or to_date is None:
             raise ValueError("From and to dates not specified")
+
+        if from_date.hour != 0 or to_date.hour != 0:
+            print("Log parsing time range granularity is by day, hours are ingored")
+
         for year_month in os.listdir(logger_name_path):
             year_month_path = os.path.join(logger_name_path, year_month)
             if not os.path.isdir(year_month_path):
