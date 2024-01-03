@@ -102,9 +102,9 @@ class LogsReader:
             if measurable not in measurables:
                 measurables.append(measurable)
         return measurables
-    
-    def get_data(self, logger_name: str, measurable: str, from_date: datetime.datetime, to_date: datetime.datetime):
-        """  
+
+    def get_data(self, logger_name: str, measurable: str, from_date: datetime.datetime=None, to_date: datetime.datetime=None):
+        """
         Function checks if given `logger_name` and `measurable` are valid and collects timestamps and values for a given time period.
 
         Args:
@@ -124,6 +124,36 @@ class LogsReader:
         if not os.path.isdir(logger_name_path):
             raise ValueError('Folder name is not valid')
 
+        try:
+            # Determine the earliest and oldest days available in the log
+            earliest_year_month = min(os.listdir(logger_name_path))
+            earliest_year_month_path = os.path.join(logger_name_path,
+                                                    earliest_year_month)
+            earliest_date = datetime.datetime.\
+                strptime(f'{earliest_year_month}', '%Y-%m').\
+                    replace(day=int(min([val for val in os.listdir(earliest_year_month_path) if val.isdigit()])))
+
+            latest_year_month = max(os.listdir(logger_name_path))
+            latest_year_month_path = os.path.join(logger_name_path,
+                                                    latest_year_month)
+            latest_date = datetime.datetime.\
+                strptime(f'{latest_year_month}', '%Y-%m').\
+                    replace(day=int(max([val for val in os.listdir(latest_year_month_path) if val.isdigit()])))
+
+        except Exception as excpt:
+            print("Could not determine earliest and latest available datapoints")
+            print(excpt)
+            earliest_date = None
+            latest_date = None
+
+        if from_date is None:
+            from_date = earliest_date
+
+        if to_date is None:
+            to_date = latest_date
+
+        if from_date is None or to_date is None:
+            raise ValueError("From and to dates not specified")
         for year_month in os.listdir(logger_name_path):
             year_month_path = os.path.join(logger_name_path, year_month)
             if not os.path.isdir(year_month_path):
