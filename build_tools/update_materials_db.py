@@ -1,6 +1,6 @@
 import pytest
 # set $env:CONN_STR to read-only connection string to toolbox-mongo.db
-@pytest.skip("Should be manually invoked and pymongo package is not required for the scilightcon package")
+@pytest.mark.skip("Should be manually invoked and pymongo package is not required for the scilightcon package")
 def load_materials_database():
     import pymongo
     import pickle
