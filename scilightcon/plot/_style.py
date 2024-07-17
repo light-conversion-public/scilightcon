@@ -2,6 +2,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from matplotlib.colors import LinearSegmentedColormap
+from ._fixes import resize_mode
 
 import os
 import numpy as np
@@ -154,7 +155,7 @@ def add_watermark(target, loc='lower left'):
         wm_width = int(_determine_logo_width(width, wm_min_ratio_axis))                       # make watermark larger than given ratio
         scaling = (wm_width / float(img.size[0]))
         wm_height = int(float(img.size[1])*float(scaling))
-        img = img.resize((wm_width, wm_height), Image.ANTIALIAS)
+        img = img.resize((wm_width, wm_height), resize_mode())
     
         imagebox = OffsetImage(img, zoom=1, alpha=wm_alpha)
         imagebox.image.axes = ax
@@ -172,7 +173,7 @@ def add_watermark(target, loc='lower left'):
         scaling = (wm_width / float(img.size[0]))
         wm_height = int(float(img.size[1])*float(scaling))
         
-        img = img.resize((wm_width, wm_height), Image.ANTIALIAS)
+        img = img.resize((wm_width, wm_height), resize_mode())
         
 #        if loc == 'center':
         logo_pos = [(fig.bbox.xmax - wm_width)/2, (fig.bbox.ymax - wm_height)/2]
