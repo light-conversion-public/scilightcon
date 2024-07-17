@@ -4,10 +4,8 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from matplotlib.testing.decorators import cleanup
 
 @pytest.mark.skip(reason="helper")
-@cleanup
 def plot_something(n, figure_name):
     fig = plt.figure(figure_name)
 
