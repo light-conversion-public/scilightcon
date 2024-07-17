@@ -143,7 +143,7 @@ def add_watermark(target, loc='lower left'):
     from PIL import Image
     from matplotlib.offsetbox import ( OffsetImage,AnchoredOffsetbox)
 
-    file_name = str(Path(__file__).parent) + '\\lclogo.png'
+    file_name = (str)(Path.joinpath(Path(__file__).parent, 'lclogo.png'))
     img = Image.open(file_name)
     
     if isinstance(target, plt.Axes):
