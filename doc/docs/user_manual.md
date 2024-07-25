@@ -290,8 +290,8 @@ print(loggers_names_list)
 measurables = reader.list_measurables(logger_name)
 print (measurables)
 
-from_date = datetime.datetime(2023,7,20)
-to_date = datetime.datetime(2023,7,21)
+from_date = datetime.datetime(2023,7,20, 16, 0, 0)
+to_date = datetime.datetime(2023,7,21, 21, 0,0)
 times, values = reader.get_data(
     logger_name=logger_name,
     measurable=measurable,
