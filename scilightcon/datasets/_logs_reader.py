@@ -155,9 +155,6 @@ class LogsReader:
         if from_date is None or to_date is None:
             raise ValueError("From and to dates not specified")
 
-        if from_date.hour != 0 or to_date.hour != 0:
-            print("Log parsing time range granularity is by day, hours are ingored")
-
         for year_month in os.listdir(logger_name_path):
             year_month_path = os.path.join(logger_name_path, year_month)
             if not os.path.isdir(year_month_path):
@@ -165,13 +162,17 @@ class LogsReader:
 
             year_month_date = datetime.datetime.strptime(f'{year_month}', '%Y-%m')
 
+            from_day_number = from_date.day
             from_month_number = from_date.month
             from_year_number = from_date.year
             from_year_month_date = datetime.datetime.strptime(f'{from_year_number}-{from_month_number}', '%Y-%m')
+            from_year_month_day_date = datetime.datetime.strptime(f'{from_year_number}-{from_month_number}-{from_day_number}', r'%Y-%m-%d')
 
+            to_day_number = to_date.day
             to_month_number = to_date.month
             to_year_number = to_date.year
             to_year_month_date = datetime.datetime.strptime(f'{to_year_number}-{to_month_number}', '%Y-%m')
+            to_year_month_day_date = datetime.datetime.strptime(f'{to_year_number}-{to_month_number}-{to_day_number}', r'%Y-%m-%d')
             if not (year_month_date >= from_year_month_date and year_month_date <= to_year_month_date):
                 continue
 
@@ -182,8 +183,9 @@ class LogsReader:
                 if not os.path.isdir(day_path):
                     continue
 
-                folder_date = datetime.datetime.strptime(f'{year_month}-{day}', '%Y-%m-%d')
-                if not (folder_date >= from_date and folder_date <= to_date):
+
+                folder_date = datetime.datetime.strptime(f'{year_month}-{day}', r'%Y-%m-%d')
+                if (folder_date < from_year_month_day_date or folder_date > to_year_month_day_date):
                     continue
 
                 file_path = os.path.join(day_path, measurable + ".txt")
@@ -195,9 +197,10 @@ class LogsReader:
                     for line in f:
                         columns = line.strip().split(',')
                         if len(columns) >= 3:
-                            date_coloumn = datetime.datetime.strptime(columns[0], '%Y-%m-%d %H:%M:%S.%f')
-                            value_coloumn = float(columns[2])
-                            output_list.append((date_coloumn, value_coloumn))
+                            date_column = datetime.datetime.strptime(columns[0], '%Y-%m-%d %H:%M:%S.%f')
+                            if (date_column >= from_date and date_column <= to_date):
+                                value_column = float(columns[2])
+                                output_list.append((date_column, value_column))
 
         sorted_output = sorted(output_list, key=lambda x: x[0])
         sorted_output_times = [column[0] for column in sorted_output]
