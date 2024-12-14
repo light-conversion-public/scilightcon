@@ -10,7 +10,7 @@ def thorlabs_xls_to_csv(file_name):
     Examples:
 
         >>> from scilightcon.datasets import thorlabs_xls_to_csv # doctest: +SKIP
-        >>> wavl, trans = thorlabs_xls_to_csv('DMLP505.xls')
+        >>> wavl, trans = thorlabs_xls_to_csv('DMLP505.xls') # doctest: +SKIP
     """
     data = pd.read_excel(file_name, skiprows=1, usecols='C:E')
 
