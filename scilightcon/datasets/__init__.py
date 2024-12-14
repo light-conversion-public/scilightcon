@@ -11,6 +11,7 @@ __all__ = [
     "load_zipped_csv_data",
     "load_atmospheric_data",
     "load_csv_data",
+    "LogsReader",
     "thorlabs_xls_to_csv"
 ]
 
