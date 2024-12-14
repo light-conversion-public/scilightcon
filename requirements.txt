@@ -6,4 +6,5 @@ scipy
 pickle-mixin
 msgpack
 pandas
+xlrd
 Pillow
