@@ -10,7 +10,7 @@ for material in ['Au', 'Ag', 'Al']:
 plt.xlabel(headers[0])
 plt.ylabel(headers[1])
 plt.legend()
-plt.grid()
+plt.grid('on')
 
 plt.savefig('./doc/docs/img/load_EKSMA_OPTICS_mirror_reflections.png')
 plt.show()

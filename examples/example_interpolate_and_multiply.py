@@ -29,6 +29,6 @@ plt.ylim(0, None)
 plt.legend()
 plt.grid()
 
-plt.savefig('./doc/docs/img/example_interpolate_and_multiply.png')
+# plt.savefig('./doc/docs/img/example_interpolate_and_multiply.png')
 
 plt.show()
