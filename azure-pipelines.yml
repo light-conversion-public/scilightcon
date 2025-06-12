@@ -27,7 +27,7 @@ steps:
 - task: AzureKeyVault@1
   inputs:
     azureSubscription: 'LCURSServiceConnection'
-    KeyVaultName: 'devopsvault0'
+    KeyVaultName: 'scisw-general-keyvault'
     SecretsFilter: '*'
     RunAsPreJob: true
 - task: UsePythonVersion@0
