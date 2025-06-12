@@ -18,7 +18,7 @@ strategy:
     windowsPython311:
       imageName: 'windows-latest'
       python.version: '3.11'
-     windowsPython313:
+    windowsPython313:
       imageName: 'windows-latest'
       python.version: '3.13'
 
