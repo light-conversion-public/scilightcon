@@ -41,8 +41,8 @@ def load_csv_data(
         target_names (ndarry): A 1D array containing the names of the classifications. For example target_names[0] is the name of the target[0] class. Shape (n_samples,)
 
     """
-    with _get_path(data_module, data_file_name) as csv_file_path:
-        return _read_csv_file(csv_file_path)
+    csv_file_path = _get_path(data_module, data_file_name)
+    return _read_csv_file(csv_file_path)
 
 def _read_csv_file(csv_file_path):
     with open(csv_file_path, 'r') as csv_file:
@@ -93,9 +93,9 @@ def load_zipped_csv_data(data_file_name, *, data_module=DATA_MODULE):
     temp_dir = tempfile.gettempdir()
     temp_path = os.path.join(temp_dir, 'extracted.csv') 
 
-    with _get_path(scilightcon.datasets.DATA_MODULE, data_file_name) as gz_file_path:
-        with gzip.open(gz_file_path, 'r') as file_in:
-             with open(temp_path, 'wb') as file_out:
+    gz_file_path = _get_path(scilightcon.datasets.DATA_MODULE, data_file_name)
+    with gzip.open(gz_file_path, 'r') as file_in:
+            with open(temp_path, 'wb') as file_out:
                 shutil.copyfileobj(file_in, file_out)
     
     return _read_csv_file(temp_path)
