@@ -14,10 +14,13 @@ strategy:
       python.version: '3.11'
     linuxPython37:
       imageName: 'ubuntu-latest'
-      python.version: '3.7'
+      python.version: '3.13'
     windowsPython311:
       imageName: 'windows-latest'
       python.version: '3.11'
+    windowsPython313:
+      imageName: 'windows-latest'
+      python.version: '3.13'
 
 pool:
   vmImage: $(imageName)
@@ -26,7 +29,7 @@ steps:
 
 - task: AzureKeyVault@1
   inputs:
-    azureSubscription: 'LCURSServiceConnection'
+    azureSubscription: 'scisw-service-connection'
     KeyVaultName: 'scisw-general-keyvault'
     SecretsFilter: '*'
     RunAsPreJob: true
