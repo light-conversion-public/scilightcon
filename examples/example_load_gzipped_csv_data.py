@@ -1,7 +1,8 @@
-from scilightcon.datasets import _load_zipped_csv_data
+from scilightcon.datasets import load_zipped_csv_data
+from importlib.resources import files
 
-data_file_name = r'C:\Code\lightcon-scipack\scilightcon\datasets\data\data_test_detect_peaks.csv.gz'
-data, header = _load_zipped_csv_data(data_file_name)
+data_path = str(files('scilightcon').joinpath("datasets/data/data_test_detect_peaks.csv.gz"))
+data, header = load_zipped_csv_data(data_path)
 
 
 # Code for compressing a file with gzip

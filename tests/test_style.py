@@ -15,7 +15,6 @@ def plot_something(n, figure_name):
 
 def test_apply_style():
     apply_style()
-
     plot_something(1, "test")
 
 def test_reset_style():
@@ -24,18 +23,10 @@ def test_reset_style():
 
 def test_watermark():
     apply_style()
-
     plot_something(1, "test watermark")
-
     add_watermark(plt.gcf())
-
-    plt.show()
 
 def test_watermarks():
     apply_style()
-
     plot_something(4, "test watermarks")
-
     add_watermarks(plt.gcf())
-
-    plt.show()

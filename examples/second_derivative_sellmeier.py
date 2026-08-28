@@ -1,8 +1,9 @@
-import sympy as sp
-from sympy import symbols
-import numpy as np
 
-wl, C0, C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16 = symbols('wl, C[0], C[1], C[2], C[3], C[4], C[5], C[6], C[7], C[8], C[9], C[10], C[11], C[12], C[13], C[14], C[15], C[16]')
+# import sympy as sp
+# from sympy import symbols
+# import numpy as np
+
+# wl, C0, C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16 = symbols('wl, C[0], C[1], C[2], C[3], C[4], C[5], C[6], C[7], C[8], C[9], C[10], C[11], C[12], C[13], C[14], C[15], C[16]')
 
 #     # formula 1 
 #     eq1 = sp.sqrt(1+C0+C1/(1-(C2/wl)**2)+C3/(1-(C4/wl)**2)+C5/(1-(C6/wl)**2)+C7/(1-(C8/wl)**2)+C9/(1-(C10/wl)**2)+C11/(1-(C12/wl)**2)+C13/(1-(C14/wl)**2)+C15/(1-(C16/wl)**2))

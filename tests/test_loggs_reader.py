@@ -8,7 +8,7 @@ import tempfile
 import os
 
 temp_dir = tempfile.mkdtemp()
-zip_file_path = _get_path(scilightcon.datasets.DATA_MODULE, 'logsreader_test.zip')
+zip_file_path = str(_get_path(scilightcon.datasets.DATA_MODULE, 'logsreader_test.zip'))
 with ZipFile(zip_file_path, 'r') as zip_ref:
     zip_ref.extractall(temp_dir)
 

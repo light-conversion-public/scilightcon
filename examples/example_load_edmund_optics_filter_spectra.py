@@ -1,11 +1,11 @@
-from scilightcon.datasets import load_EO_filter_transmissions
+from scilightcon.datasets import load_edmund_spectrum
 import matplotlib.pyplot as plt
 import numpy as np
 plt.figure()
 plt.clf()
 
-for material in ["lp_400nm", "lp_600nm", "sp_400nm", 'sp_600nm']:
-    data, headers = load_EO_filter_transmissions(material)
+for material in ["69200", "69202", "69204", "69206"]:
+    data, headers = load_edmund_spectrum(material, 't')
 
     x_values = data[:,0]
     y_values = data[:,1]

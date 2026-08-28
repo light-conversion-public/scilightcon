@@ -1,12 +1,14 @@
-from scilightcon.datasets import load_THORLABS_filter_transmissions
+import sys
+from scilightcon.datasets import load_thorlabs_spectrum
 import matplotlib.pyplot as plt
 import numpy as np
 
-plt.figure('reflectance')
-plt.clf()
+if 'pytest' in sys.modules:
+    plt.figure('reflectance')
+    plt.clf()
 
 for material in ["DMLP425", "DMLP550", "FES0500", 'FES0800', "FGUV11"]:
-    data, headers = load_THORLABS_filter_transmissions(material)
+    data, headers = load_thorlabs_spectrum(material, 't')
 
     x_values = data[:,0]
     y_values = data[:,1]
@@ -25,11 +27,13 @@ for material in ["DMLP425", "DMLP550", "FES0500", 'FES0800', "FGUV11"]:
     y_values_smooth[-2] = (filtered_y[-1] + filtered_y[-2])/2
     y_values_smooth[0] = (y_values[0] + y_values[1])/2  
     y_values_smooth[1] = (y_values[0] + y_values[1])/2
-    plt.plot(filtered_x, y_values_smooth, label = material)
+    if 'pytest' in sys.modules:
+        plt.plot(filtered_x, y_values_smooth, label = material)
 
-plt.xlabel(headers[0])
-plt.ylabel(headers[1])
-plt.legend()
-plt.grid()
-plt.savefig('load_thorlabs_transmission.png')
-plt.show()
+if 'pytest' in sys.modules:
+    plt.xlabel(headers[0])
+    plt.ylabel(headers[1])
+    plt.legend()
+    plt.grid()
+    plt.savefig('load_thorlabs_transmission.png')
+    plt.show()

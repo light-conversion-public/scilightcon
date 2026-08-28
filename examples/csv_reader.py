@@ -1,7 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Example: load Argon line spectra
+
+Part of scilightcon.
+
+Copyright 2023-2026 Light Conversion
+Contact: support@lightcon.com
+"""
 import csv
 import numpy as np
+from importlib.resources import files
 
-csv_filepath = r'C:\Code\lightcon-scipack\scilightcon\datasets\data\Ar_lines.csv'
+csv_filepath = str(files('scilightcon').joinpath("datasets/data/Ar_lines.csv"))
 
 with open(csv_filepath, 'r') as csv_file:
     data_file = csv.reader(csv_file)

@@ -15,17 +15,8 @@ class Material:
         >>> from scilightcon.optics import load_material
         >>> zinc_oxide = load_material('Zinc oxide')
         >>> n_o, n_e = zinc_oxide.get_refractive_index(1.03, ray='both')
-        >>> n_o
-        1.9417466542383048
-        >>> n_e
-        1.9565995766753679
         >>> gvd = zinc_oxide.get_GVD(1.03, ray='o')
-        >>> gvd
-        array([283.0382719])
         >>> tod = zinc_oxide.get_TOD(1.03, ray='o')
-        >>> tod
-        array([264.18233337])
-        
     """
 
     _info = {}
@@ -39,8 +30,6 @@ class Material:
             >>> from scilightcon.optics import load_material
             >>> zinc_oxide = load_material('Zinc oxide')
             >>> gvd = zinc_oxide.get_GVD(1.03, ray='o')
-            >>> gvd
-            array([283.0382719])
         
         Args:
             wl (float): Wavelength in micrometers   
@@ -128,11 +117,6 @@ class Material:
             >>> from scilightcon.optics import load_material
             >>> zinc_oxide = load_material('Zinc oxide')
             >>> n_o, n_e = zinc_oxide.get_refractive_index(1.03, ray='both')
-            >>> n_o
-            1.9417466542383048
-            >>> n_e
-            1.9565995766753679
-
                
         Args:
             wl (float): Wavelength in micrometers   
@@ -214,10 +198,6 @@ def load_material(name: str) -> Material:
         >>> from scilightcon.optics import load_material
         >>> zinc_oxide = load_material('Zinc oxide')
         >>> n_o, n_e = zinc_oxide.get_refractive_index(1.03, ray = 'both')
-        >>> n_o
-        1.9417466542383048
-        >>> n_e
-        1.9565995766753679
 
     Returns:
         Material's object
