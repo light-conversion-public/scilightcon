@@ -1,6 +1,13 @@
-"""Base data loading code for all datasets
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Dataset module
 
+Part of scilightcon.
+
+Copyright 2023-2026 Light Conversion
+Contact: support@lightcon.com
 """
+
 import csv
 import gzip
 import os
@@ -238,9 +245,9 @@ def load_edmund_spectrum(
 
     Examples:
         >>> from scilightcon.datasets import load_edmund_spectrum
-        >>> data, header = load_edmund_spectrum('lp_450nm')
+        >>> data, header = load_edmund_spectrum('69202', 't')
         >>> np.shape(data)
-        (293, 2)
+        (346, 2)
         >>> header
         ['Wavelength (nm)', 'Transmission (%)']
 
@@ -281,9 +288,9 @@ def load_hamamatsu_spectrum(
         >>> from scilightcon.datasets import load_hamamatsu_spectrum
         >>> data, header = load_hamamatsu_spectrum('H10721-210')
         >>> np.shape(data)
-        (293, 2)
+        (1200, 2)
         >>> header
-        ['Wavelength (nm)', 'Transmission (%)']
+        ['Wavelength  (nm)', 'QE (%)']
 
     Args:
         detector (str): `H7422-40`, `H7422-50`, `H10721-01`, `H10721-110`
@@ -372,7 +379,7 @@ def load_chroma_spectrum(
         >>> from scilightcon.datasets import load_chroma_spectrum
         >>> data, header = load_chroma_spectrum('ET340X', 't')
         >>> np.shape(data)
-        (2251, 2)
+        (1601, 2)
         >>> header
         ['Wavelength  (nm)', 'Transmission (%)']
 

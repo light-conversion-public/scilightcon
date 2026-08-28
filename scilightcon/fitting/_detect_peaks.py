@@ -13,8 +13,6 @@ def detect_peaks(x : List[float], y : List[float], method : str, n_max: int=None
             >>> y = data[:,1]
             >>> method = "above_average"
             >>> clusters = detect_peaks(x, y, method = method, n_max=2)
-            >>> print('clusters', clusters)
-            clusters [[22, 25], [12, 15]]
 
         Args:
             x (float): x axis data
