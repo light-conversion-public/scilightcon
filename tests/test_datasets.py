@@ -13,21 +13,21 @@ def test_load_spectrum():
     assert_spectrum_shape(data)
 
     with pytest.raises(ValueError):
-        load_spectrum('undefined_vendor', 'x')
+        load_spectrum('undefined_vendor', 'undefined_filter', 'undefined_mode')
 
     with pytest.raises(ValueError):
-        load_spectrum('thorlabs', 'undefined_filter')
+        load_spectrum('thorlabs', 'undefined_filter', 'undefined_mode')
 
     with pytest.raises(ValueError):
         load_spectrum('thorlabs', 'DMLP425', 'undefined_mode')
 
 def test_load_thorlabs_spectrum():
-    from scilightcon.datasets import load_THORLABS_filter_transmissions
-    data, header = load_THORLABS_filter_transmissions('DMLP425', 't')
+    from scilightcon.datasets import load_thorlabs_spectrum
+    data, header = load_thorlabs_spectrum('DMLP425', 't')
     assert_spectrum_shape(data)
 
     with pytest.raises(ValueError):
-    _,_ = load_THORLABS_filter_transmissions('Other')
+        _,_ = load_thorlabs_spectrum('Other')
 
 def test_load_chroma_spectrum():
     from scilightcon.datasets import load_chroma_spectrum
@@ -39,22 +39,22 @@ def test_load_chroma_spectrum():
         _,_ = load_chroma_spectrum('Other')
 
 def test_load_eksma_spectrum():
-    from scilightcon.datasets import load_EKSMA_OPTICS_mirror_reflections
+    from scilightcon.datasets import load_eksma_spectrum
 
-    data, headers = load_EKSMA_OPTICS_mirror_reflections('Ag')
+    data, headers = load_eksma_spectrum('Ag')
     assert_spectrum_shape(data)
 
     with pytest.raises(ValueError):
-        _,_ = load_EKSMA_OPTICS_mirror_reflections('Other')
+        _,_ = load_eksma_spectrum('Other')
 
 def test_load_hamamatsu_spectrum():
-    from scilightcon.datasets import load_hamamatsu_qe
+    from scilightcon.datasets import load_hamamatsu_spectrum
 
-    data, headers = load_hamamatsu_qe('H10721-210')
+    data, headers = load_hamamatsu_spectrum('H10721-210')
     assert_spectrum_shape(data)
 
     with pytest.raises(ValueError):
-        _,_ = load_hamamatsu_qe('Other')
+        _,_ = load_hamamatsu_spectrum('Other')
 
 def test_load_csv_data():
     from scilightcon.datasets import load_csv_data
@@ -92,11 +92,5 @@ def test_load_zipped_csv_data():
 def load_atmospheric_data():
     from scilightcon.datasets import load_atmospheric_data
 
-    data, headers = load_atmospheric_data('atmosphere.csv')
+    data, headers = load_atmospheric_data()
     assert (np.shape(data) == (20407,2))
-
-    with pytest.raises(ValueError):
-        try:
-            _,_ = load_atmospheric_data('Other')
-        except FileNotFoundError:
-            raise ValueError
