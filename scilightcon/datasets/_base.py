@@ -281,7 +281,7 @@ def load_hamamatsu_spectrum(
         data (Ndarray): A 2D array of data with headers excluded. Shape (n_samples, n_columns)
         header (List): Column names or empty strings. Shape (n_columns)
     """
-    return load_spectrum('hamamatsu', detector)
+    return load_spectrum('hamamatsu', detector, 'qe')
 
 
 def load_thorlabs_spectrum(
@@ -346,7 +346,7 @@ def load_eksma_spectrum(
         header (List): Column names or empty strings. Shape (n_columns)
 
     """
-    return load_spectrum('eksma', material)
+    return load_spectrum('eksma', material, 'r')
 
 
 def load_chroma_spectrum(
