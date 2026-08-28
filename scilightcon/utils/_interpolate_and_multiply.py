@@ -59,10 +59,9 @@ def interpolate_and_multiply(
     Returns:
         Interpolated X,Y array in the same type as arr1.
     """
-    if type(arr1) == Tuple and type(arr2) == Tuple:
+    if type(arr1) == tuple and type(arr2) == tuple:
         return _interpolate_and_multiply_list(arr1, arr2)
     elif type(arr1) == np.ndarray and type(arr2) == np.ndarray:
         return _interpolate_and_multiply_ndarray(arr1, arr2)
     else:
         raise RuntimeError(f"Unhandled array type combination {type(arr1)} {type(arr2)}")
-
