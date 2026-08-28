@@ -9,9 +9,8 @@ import os
 
 temp_dir = tempfile.mkdtemp()
 
-with _get_path(scilightcon.datasets.DATA_MODULE, 'logsreader_test.zip') as zip_file_path:
-    with ZipFile(zip_file_path, 'r') as zip_ref:
-        zip_ref.extractall(temp_dir)
+with ZipFile(str(_get_path(scilightcon.datasets.DATA_MODULE, 'logsreader_test.zip')), 'r') as zip_ref:
+    zip_ref.extractall(temp_dir)
 
 filepath = os.path.join(temp_dir, 'logsreader_test')
 reader = LogsReader(filepath)

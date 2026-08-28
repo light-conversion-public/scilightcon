@@ -210,7 +210,7 @@ def load_zipped_csv_data(data_file_name, *, data_module=DATA_MODULE):
     temp_dir = tempfile.gettempdir()
     temp_path = os.path.join(temp_dir, 'extracted.csv')
 
-    with gzip.open(_get_path(scilightcon.datasets.DATA_MODULE, data_file_name), 'r') as file_in:
+    with gzip.open(str(_get_path(scilightcon.datasets.DATA_MODULE, data_file_name)), 'r') as file_in:
         with open(temp_path, 'wb') as file_out:
             shutil.copyfileobj(file_in, file_out)
 
