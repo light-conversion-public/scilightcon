@@ -47,9 +47,19 @@ ThorlabsFilterName = Literal[
     'NE10B', 'NE20B', 'NE30B', 'NE40B', 'NE50B', 'NE60B',
 ]
 
+EOFilterName = Literal[
+    '86332', '69200', '69202', '69204', '69206', '69886', '69887', '69888',
+    '69888', '69889', '69890', '69891', '69892', '69893',
+]
+
 EksmaMirrorMaterial = Literal['Ag', 'Al', 'Au']
 
 ChromaFilterName = Literal['ET340X']
+
+OpticalElementMode = Literal['r', 't']
+EmitterMode = Literal['ex', 'em', '2pex']
+DetectorMode = Literal['qe']
+AnyMode = OpticalElementMode | EmitterMode | DetectorMode
 
 VendorName = Literal['thorlabs', 'eo', 'chroma', 'eksma', 'hamamatsu', 'emitters', 'misc']
 
@@ -68,7 +78,7 @@ _VENDOR_FMTS = {
 def load_spectrum(
         vendor: VendorName,
         name: str,
-        mode: Literal['t', 'r', 'ex', 'em', '2pex'],
+        mode: AnyMode,
 ) -> Tuple[np.ndarray, list]:
     """Load a transmission, reflection or quantum efficiency spectrum
     for a named optic or detector from one of the vendor datasets bundled with
@@ -218,7 +228,7 @@ def load_zipped_csv_data(data_file_name, *, data_module=DATA_MODULE):
 
 
 def load_edmund_spectrum(
-        filter: Literal,
+        filter: EOFilterName,
         mode: Literal['t', 'r']
 ) -> Tuple[np.ndarray, list]:
     """Load an Edmund catalog optic transmission or reflection spectrum from
