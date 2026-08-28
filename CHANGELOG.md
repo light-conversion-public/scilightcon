@@ -1,6 +1,6 @@
 # scilightcon Change Log
 
-## [0.4.1] 2026-08-27
+## [0.4.2] 2026-08-27
 ### Added
 - External spectra importer for Thorlabs, Edmund Optics, Chroma, Eksma and
 generic CSV spectra with cataloging into the dataset module based on spectrum
@@ -13,6 +13,10 @@ FAD, GCaMP6f, mChery and tdTomato
 
 ### Changed
 - interpolate_and_multiply() now works on Tuples of Lists and ndarrays
+
+## [0.4.1] 2026-01-26
+### Added
+ - Added options to provide an arbitrary average value and return all unsorted peaks in peak_detect()
 
 ## [0.3.2] 2024-07-25
 ### Changed
