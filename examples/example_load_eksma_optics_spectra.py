@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Example: load EKSMA Optics mirror spectra.
+
+Part of scilightcon.
+
+Copyright 2023-2026 Light Conversion
+Contact: support@lightcon.com
+"""
 from scilightcon.datasets import load_eksma_spectrum
 import matplotlib.pyplot as plt
 

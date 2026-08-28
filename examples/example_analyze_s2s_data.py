@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#==========================================================================
-# 
-#--------------------------------------------------------------------------
-# Copyright (c) 2021 Light Conversion, UAB
-# All rights reserved.
-# www.lightcon.com
-#==========================================================================
+"""Examples: analyze shot-2-shot data for PHAROS
+
+Part of scilightcon.
+
+Copyright 2021-2026 Light Conversion
+Contact: support@lightcon.com
+"""
+import sys
 import numpy as np
 import scilightcon
 from scilightcon.utils import load_s2s_data
@@ -59,12 +60,12 @@ if s2s_data.version == 1:
         plt.legend()
         plt.ylim(sml_ylim)
         
-    if s2s_data.nmrsd_data_y is not None:
+    if s2s_data.nrmsd_data_y is not None:
         plt.figure('NRMSD of ' + s2s_data.device_serial_number)
         plt.clf()
         plt.suptitle('NRMSD of {:}, {:.1f} kHz, {:.0f} nm'.format(s2s_data.device_serial_number, s2s_data.repetition_rate, s2s_data.wavelength))
         
-        plt.plot((np.array(s2s_data.nmrsd_data_x) - s2s_data.nmrsd_data_x[0]) * 60, s2s_data.nmrsd_data_y)
+        plt.plot((np.array(s2s_data.nrmsd_data_x) - s2s_data.nrmsd_data_x[0]) * 60, s2s_data.nrmsd_data_y)
         plt.xlabel('Time, s')
         plt.ylabel('Normalize root-mean-square deviation, %')
         plt.ylim(nrmsd_ylim)
@@ -87,7 +88,7 @@ if s2s_data.version == 1:
         for i, outlier in enumerate(s2s_data.outliers):
             ax = plt.subplot(n, 1, i+1)            
                                     
-            plt.plot(outlier.voltage, label = 'at {:.0f} s'.format((outlier.time - s2s_data.nmrsd_data_x[0]) * 60))
+            plt.plot(outlier.voltage, label = 'at {:.0f} s'.format((outlier.time - s2s_data.nrmsd_data_x[0]) * 60))
             plt.plot([0, len(outlier.voltage)], [s2s_data.sml_mean, s2s_data.sml_mean])            
             plt.ylim([vmin, vmax])
                         
@@ -118,4 +119,5 @@ if s2s_data.version == 1:
                 ax.set_xticklabels([])
         ax.set_xlabel('Frequency, kHz')
 
-plt.show()
+if 'pytest' not in sys.modules:
+    plt.show()
