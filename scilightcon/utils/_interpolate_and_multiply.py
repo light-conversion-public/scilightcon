@@ -29,7 +29,7 @@ def _interpolate_and_multiply_list(
 
     valid_indices = np.logical_not(np.logical_or(np.isnan(arr1[0]), np.isnan(y2_interp)))
 
-    return (list(np.array(x1)[valid_indices]), list(np.array(y1[valid_indices]) * np.array(y2_interp)[valid_indices]))
+    return (list(np.array(x1)[valid_indices]), list(np.array(y1)[valid_indices]) * np.array(y2_interp)[valid_indices])
 
 
 def _interpolate_and_multiply_ndarray(
