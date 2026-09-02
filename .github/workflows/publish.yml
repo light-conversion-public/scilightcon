@@ -78,14 +78,24 @@ jobs:
             flag {print}
           ' CHANGELOG.md > release_notes.md
           if [ ! -s release_notes.md ]; then
-            echo "::error::No changelog entry found for version ${{ steps.version.outputs.version }}"
-            exit 1
+            if [ "${{ github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi' }}" = "true" ]; then
+              echo "No changelog entry found for version ${{ steps.version.outputs.version }}" > release_notes.md
+            else
+              echo "::error::No changelog entry found for version ${{ steps.version.outputs.version }}"
+              exit 1
+            fi
           fi
       - name: Upload release notes
         uses: actions/upload-artifact@v4
         with:
           name: release-notes
           path: release_notes.md
+      - name: Append TestPyPI pre-release suffix
+        if: github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi'
+        run: |
+          VERSION="${{ steps.version.outputs.version }}b${{ github.run_number }}"
+          sed -i -E "s/^__version__ = \"[^\"]+\"/__version__ = \"$VERSION\"/" scilightcon/__init__.py
+          echo "Using TestPyPI version: $VERSION"
       - uses: actions/setup-python@v6
         with:
           python-version: "3.x"
