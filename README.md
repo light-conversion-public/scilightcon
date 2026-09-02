@@ -9,7 +9,7 @@
 scilightcon is an open-source library, developed by [LIGHT CONVERSION](https://lightcon.com), one of the world’s leading manufacturers of femtosecond laser systems for industrial, scientific and medical purposes. The library includes modules and examples for optics, signal analysis, fitting, imaging, and more.
 
 - **Documentation**: [https://light-conversion-public.github.io/scilightcon/index.html](https://light-conversion-public.github.io/scilightcon/index.html) 
-- **Feedback**: <a href="mailto:mls.software@lightcon.com" id="feedback">Report issue</a>
+- **Feedback**: [Report issue](https://github.com/light-conversion-public/scilightcon/issues/new)
 
 ## Install
 scilightcon library is available as wheel packages for Windows, Linux and macOS on [PyPI](https://pypi.python.org/pypi/scilightcon/). Install using `pip`:
