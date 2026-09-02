@@ -46,7 +46,7 @@ setuptools.setup(
         'Development Status :: 4 - Beta',
     ],
     project_urls = {
-            'Documentation': 'https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html'},
+            'Documentation': 'https://light-conversion-public.github.io/scilightcon/index.html'},
     python_requires='>=3.7',
 )
 
