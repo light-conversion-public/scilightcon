@@ -3,13 +3,13 @@
 [![PyPI version scilightcon](https://badge.fury.io/py/scilightcon.svg)](https://pypi.python.org/pypi/scilightcon/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/scilightcon.svg)](https://pypi.python.org/pypi/scilightcon/)
 [![PyPi license](https://badgen.net/pypi/license/pip/)](https://pypi.org/project/pip/)
-[![Website up](https://img.shields.io/website-up-down-green-red/https/lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html.svg)](https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html)
+[![Website up](https://img.shields.io/website-up-down-green-red/https/light-conversion-public.github.io/scilightcon/index.html.svg)](https://light-conversion-public.github.io/scilightcon/index.html)
 
 ![scilightcon logo](doc/docs/img/app_logo_128px.png)
 
 scilightcon is an open-source library, developed by [LIGHT CONVERSION](https://lightcon.com), one of the world’s leading manufacturers of femtosecond laser systems for industrial, scientific and medical purposes. The library includes modules and examples for optics, signal analysis, fitting, imaging, and more.
 
-- **Documentation**: [https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html](https://lightconupdater.blob.core.windows.net/documentation/scilightcon/index.html) 
+- **Documentation**: [https://light-conversion-public.github.io/scilightcon/index.html](https://light-conversion-public.github.io/scilightcon/index.html) 
 - **Feedback**: <a href="mailto:mls.software@lightcon.com" id="feedback">Report issue</a>
 
 ## Install
