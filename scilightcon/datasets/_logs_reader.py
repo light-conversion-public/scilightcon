@@ -13,7 +13,6 @@ class LogsReader:
     Reader object for getting time-dependent data from logs folders, created by different software (Argos, CEP, ThermoLoggers, etc.)
 
     Examples:
-
         >>> from scilightcon.datasets import LogsReader # doctest: +SKIP
         >>> import datetime # doctest: +SKIP
         >>> directory = r'\\\\konversija\kleja\ThermologgerLogs\\v5' # doctest: +SKIP
