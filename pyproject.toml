@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scilightcon"
+dynamic = ["version"]
+description = "A lightcon scipack"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Vytautas Butkus", email = "vytautas.butkus@lightcon.com" }]
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+]
+dependencies = [
+    "numpy>2.0",
+    "matplotlib>=3.8.4",
+    "typing_extensions",
+    "scipy>=1.13.0",
+    "pickle-mixin",
+    "msgpack",
+    "pandas>=2.2.2",
+    "xlrd",
+    "Pillow",
+]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+
+[project.urls]
+Documentation = "https://light-conversion-public.github.io/scilightcon/index.html"
+Repository = "https://github.com/light-conversion-public/scilightcon"
+Changelog = "https://github.com/light-conversion-public/scilightcon/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = { attr = "scilightcon.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["scilightcon*"]
+
+[tool.setuptools.package-data]
+scilightcon = ["**/*.csv", "**/*.json", "**/*.pkl", "**/*.s2s", "**/*.zip", "**/*.gz", "**/*.png", "**/*.mplstyle"]

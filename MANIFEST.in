@@ -1,6 +1,5 @@
 # Include at root folder
 include MANIFEST.in
-include requirements.txt
 
 # Include recursively
 recursive-include scilightcon *.csv

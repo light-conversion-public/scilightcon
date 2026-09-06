@@ -1,0 +1,6 @@
+# Changes to CI/CD and packaging configuration must be reviewed by maintainers,
+# since these files control publishing to PyPI/TestPyPI and GitHub Pages.
+/.github/workflows/ @light-conversion-public/maintainers
+/.github/CODEOWNERS @light-conversion-public/maintainers
+/setup.py @light-conversion-public/maintainers
+/MANIFEST.in @light-conversion-public/maintainers
