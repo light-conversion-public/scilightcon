@@ -26,6 +26,7 @@ class Material:
     def get_GVD (self, wl: float, ray = 'o') -> List[float]:
         """  
         The function computes and returns the group velocity dispersion (GVD) for a specific material, considering the chosen wavelength and a type of ray.
+        
         Examples:
             >>> from scilightcon.optics import load_material
             >>> zinc_oxide = load_material('Zinc oxide')
